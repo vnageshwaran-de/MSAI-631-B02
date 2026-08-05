@@ -1,5 +1,4 @@
-.ipynb_checkpoints/
 __pycache__/
-.DS_Store
-.pytest_cache/
+*.pyc
 .venv/
+ml.zip
