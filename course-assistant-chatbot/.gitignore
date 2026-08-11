@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.DS_Store
+# generated artifacts -- rebuild with: python ingest.py
+index.faiss
+chunks.pkl
