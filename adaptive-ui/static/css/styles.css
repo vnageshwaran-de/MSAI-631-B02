@@ -1,0 +1,155 @@
+/* styles.css — Adaptive UI project (MSAI-631-B02)
+   All adaptation hooks are CSS custom properties / data attributes set by
+   adapt.js from the server's ML decision.
+   Author: Vinoth Nageshwaran <vnageshwaran@gmail.com> */
+
+:root {
+  --font-scale: 1;
+  --bg: #f5f3ee;
+  --panel: #ffffff;
+  --ink: #23303a;
+  --muted: #5b6b76;
+  --accent: #1f6f8b;
+  --ok: #1d7a46;
+  --err: #b3372f;
+  --gap: 16px;
+  --pad: 20px;
+  --radius: 10px;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+html[data-theme="dark"] {
+  --bg: #141a1f;
+  --panel: #1e262d;
+  --ink: #e8edf1;
+  --muted: #9fb0bc;
+  --accent: #5cc8e8;
+}
+
+html[data-density="comfortable"] { --gap: 22px; --pad: 26px; }
+html[data-density="cozy"]        { --gap: 16px; --pad: 20px; }
+html[data-density="compact"]     { --gap: 8px;  --pad: 12px; }
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: calc(16px * var(--font-scale));
+  transition: background 0.4s, color 0.4s;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--gap);
+  padding: calc(var(--pad) * 0.6) var(--pad);
+  background: var(--panel);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.brand { font-weight: 700; letter-spacing: 0.02em; }
+
+#main-nav { display: flex; gap: calc(var(--gap) * 0.5); flex: 1; flex-wrap: wrap; }
+
+.nav-item {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--muted);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: inherit;
+}
+.nav-item:hover, .nav-item:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+}
+
+.badge {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.85em;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--accent);
+  text-transform: capitalize;
+}
+.badge[data-persona="novice"]       { background: #e9d8a622; color: #9a7b1f; }
+.badge[data-persona="expert"]       { background: #1d7a4622; color: var(--ok); }
+
+.layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--gap);
+  padding: var(--pad);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+@media (max-width: 760px) { .layout { grid-template-columns: 1fr; } }
+
+.panel {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: var(--pad);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 8%);
+}
+
+h1 { font-size: 1.35em; margin-top: 0; }
+h2 { font-size: 1.05em; }
+
+.hint { color: var(--muted); }
+
+.toolbar { display: flex; flex-wrap: wrap; gap: calc(var(--gap) * 0.5); margin: var(--gap) 0; }
+
+button.feature {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: inherit;
+  cursor: pointer;
+}
+button.feature:hover { filter: brightness(1.08); }
+button.feature:focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 50%, transparent); }
+.help-btn { background: var(--muted); }
+
+.task { margin-top: var(--gap); }
+.task input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: inherit;
+}
+.ok { color: var(--ok); }
+.err { color: var(--err); }
+
+.advanced {
+  margin-top: var(--gap);
+  padding-top: var(--gap);
+  border-top: 1px dashed color-mix(in srgb, var(--ink) 20%, transparent);
+}
+
+.telemetry dl {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 6px 14px;
+  margin: 0 0 var(--gap);
+}
+.telemetry dt { color: var(--muted); }
+.telemetry dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+.rationale {
+  font-size: 0.9em;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

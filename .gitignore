@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .venv/
 ml.zip
+__pycache__/
+*.pyc
+adaptive-ui/data/*.jsonl

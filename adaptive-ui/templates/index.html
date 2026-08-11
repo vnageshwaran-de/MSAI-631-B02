@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-density="cozy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive Dashboard — MSAI-631 Adaptive UI Project</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <span class="brand">Adaptive&nbsp;Dashboard</span>
+    <nav id="main-nav" aria-label="Primary"></nav>
+    <span id="persona-badge" class="badge" title="Persona inferred by k-means clustering">detecting…</span>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <h1>Live workspace</h1>
+      <p id="hint" class="hint">Interact with the controls below. The interface watches how you
+        work — speed, errors, breadth of features, help usage — and an ML model on the server
+        re-shapes the UI to fit you.</p>
+
+      <div class="toolbar">
+        <button class="feature" data-feature="dashboard">Open dashboard</button>
+        <button class="feature" data-feature="reports">Run report</button>
+        <button class="feature" data-feature="analytics">View analytics</button>
+        <button class="feature" data-feature="export">Export data</button>
+        <button class="feature" data-feature="settings">Settings</button>
+        <button class="feature help-btn" data-feature="help">Help</button>
+      </div>
+
+      <div class="task">
+        <label for="task-input">Type <code>run q3 report</code> and press Enter (typos count as errors):</label>
+        <input id="task-input" type="text" autocomplete="off" spellcheck="false">
+        <p id="task-feedback" role="status"></p>
+      </div>
+
+      <div id="advanced" class="advanced" hidden>
+        <h2>Advanced tools</h2>
+        <button class="feature" data-feature="analytics">Cohort builder</button>
+        <button class="feature" data-feature="export">Bulk export API</button>
+        <button class="feature" data-feature="reports">Scheduled reports</button>
+      </div>
+    </section>
+
+    <aside class="panel telemetry">
+      <h2>What the AI sees</h2>
+      <dl id="metrics">
+        <dt>Avg. task time</dt><dd id="m-task">–</dd>
+        <dt>Error rate</dt><dd id="m-err">–</dd>
+        <dt>Feature breadth</dt><dd id="m-breadth">–</dd>
+        <dt>Help usage</dt><dd id="m-help">–</dd>
+      </dl>
+      <h2>Model decision</h2>
+      <p id="rationale" class="rationale">Waiting for enough interaction data…</p>
+    </aside>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/tracker.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/adapt.js') }}"></script>
+</body>
+</html>
